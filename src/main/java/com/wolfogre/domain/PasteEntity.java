@@ -22,23 +22,27 @@ public class PasteEntity {
     @Column(nullable = false, length = 30)
     private String language;
 
+    @Column(nullable = false, columnDefinition="LONGBLOB")
+    private String content;
+
     @Column(nullable = false, length = 15)
     private String ip;
 
-    @Column(nullable = false, columnDefinition="LONGBLOB")
-    private String content;
+    @Column(nullable = false, length = 50)
+    private String location;
 
     public PasteEntity(){
 
     }
 
-    public PasteEntity(Integer id, String name, Date time, String language, String ip, String content) {
+    public PasteEntity(Integer id, String name, Date time, String language, String content, String ip, String location) {
         this.id = id;
         this.name = name;
         this.time = time;
         this.language = language;
-        this.ip = ip;
         this.content = content;
+        this.ip = ip;
+        this.location = location;
     }
 
     public Integer getId() {
@@ -73,6 +77,14 @@ public class PasteEntity {
         this.language = language;
     }
 
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
     public String getIp() {
         return ip;
     }
@@ -81,11 +93,11 @@ public class PasteEntity {
         this.ip = ip;
     }
 
-    public String getContent() {
-        return content;
+    public String getLocation() {
+        return location;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setLocation(String location) {
+        this.location = location;
     }
 }

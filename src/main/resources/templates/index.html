@@ -6,7 +6,8 @@
 </head>
 <body>
 <div>
-    你的IP：<span th:text="${ip}"></span>
+    你的IP：<span th:text="${ip}"></span><br/>
+    你的位置：<span th:text="${location}"></span><br/>
     <form action="submit" method="post">
         发布者<input type="text" name="name"/><br/>
         语言

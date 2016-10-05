@@ -21,16 +21,17 @@ public class PasteService {
     PasteRepository pasteRepository;
 
     public int getMaxId() {
-        return pasteRepository.getMaxId();
+        Integer maxId = pasteRepository.getMaxId();
+        return maxId == null ? 0 : maxId;
     }
 
-    public int savePaste(String name, Date time, String language, String ip, String content) {
+    public int savePaste(String name, Date time, String language, String content, String ip, String location) {
         //TODO:应该检查输入参数，有误抛异常
         content = StringEscapeUtils.escapeHtml4(content);
         synchronized(this) {
-            int id = pasteRepository.getMaxId() + 1;
+            int id = getMaxId() + 1;
             // TODO:time参数待处理
-            PasteEntity pasteEntity = new PasteEntity(id, name, time, language, ip, content);
+            PasteEntity pasteEntity = new PasteEntity(id, name, time, language, content, ip, location);
             pasteRepository.save(pasteEntity);
             return id;
         }

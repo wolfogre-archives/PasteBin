@@ -28,6 +28,7 @@ public class IpService {
         return input != null && patternIp.matcher(input).matches();
     }
 
+    // TODO:拖累性能太严重，考虑让前段做
     public String getIpLocation(String input) throws IOException, JSONException {
         if(!isIp(input))
             return "error";
