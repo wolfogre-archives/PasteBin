@@ -2,6 +2,7 @@ package com.wolfogre.dao;
 
 import com.wolfogre.domain.PasteEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
@@ -10,4 +11,6 @@ import java.util.List;
  */
 public interface PasteRepository extends JpaRepository<PasteEntity, Integer>{
     List<PasteEntity> findByName(String name);
+    @Query("SELECT MAX(p.id) FROM PasteEntity p")
+    Integer getMaxId();
 }
