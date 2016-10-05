@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.sql.Date;
 import java.util.List;
 
 /**
@@ -31,14 +32,14 @@ public class MainController {
     }
 
     @RequestMapping("/submit")
-    public String submit(Model model, String name) {
-        model.addAttribute("name", name);
-        return "index";
+    public String submit(Model model, String name, String language, String content) {
+        int id = pasteService.savePaste(name, new Date(new java.util.Date().getTime()), language, "unknown", content);
+        return "redirect:/" + id;
     }
 
     @RequestMapping("/{id}")
     public String submit(Model model, @PathVariable("id") int id) {
         model.addAttribute("name", id);
-        return "index";
+        return "content";
     }
 }

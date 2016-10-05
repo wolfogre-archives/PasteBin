@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import java.lang.annotation.Annotation;
+import java.sql.Date;
 import java.util.List;
 
 /**
@@ -20,5 +21,16 @@ public class PasteService {
 
     public int getMaxId() {
         return pasteRepository.getMaxId();
+    }
+
+    public int savePaste(String name, Date time, String language, String ip, String content) {
+        //TODO:应该检查输入参数，有误抛异常
+        synchronized(this) {
+            int id = pasteRepository.getMaxId() + 1;
+            // TODO:time参数待处理
+            PasteEntity pasteEntity = new PasteEntity(id, name, time, language, ip, content);
+            pasteRepository.save(pasteEntity);
+            return id;
+        }
     }
 }

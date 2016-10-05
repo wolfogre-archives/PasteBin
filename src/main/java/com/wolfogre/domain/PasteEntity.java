@@ -1,9 +1,5 @@
 package com.wolfogre.domain;
 
-import org.hibernate.annotations.Type;
-import org.hibernate.validator.constraints.Length;
-import org.springframework.data.jpa.repository.Query;
-
 import javax.persistence.*;
 import java.sql.Blob;
 import java.util.Date;
@@ -15,31 +11,34 @@ import java.util.Date;
 @Table(name = "paste")
 public class PasteEntity {
     @Id
-    @Column(name = "id")
     private Integer id;
 
-    @Column(name = "name", nullable = false, length = 30)
+    @Column(nullable = false, length = 30)
     private String name;
 
-    @Column(name = "time", nullable = false)
+    @Column(nullable = false)
     private Date time;
 
-    @Column(name = "ip", nullable = false, length = 15)
+    @Column(nullable = false, length = 30)
+    private String language;
+
+    @Column(nullable = false, length = 15)
     private String ip;
 
-    @Column(name = "code", nullable = false)
-    private Blob code;
+    @Column(nullable = false, columnDefinition="LONGBLOB")
+    private String content;
 
     public PasteEntity(){
 
     }
 
-    public PasteEntity(Integer id, String name, Date time, String ip, Blob code) {
+    public PasteEntity(Integer id, String name, Date time, String language, String ip, String content) {
         this.id = id;
         this.name = name;
         this.time = time;
+        this.language = language;
         this.ip = ip;
-        this.code = code;
+        this.content = content;
     }
 
     public Integer getId() {
@@ -66,6 +65,14 @@ public class PasteEntity {
         this.time = time;
     }
 
+    public String getLanguage() {
+        return language;
+    }
+
+    public void setLanguage(String language) {
+        this.language = language;
+    }
+
     public String getIp() {
         return ip;
     }
@@ -74,11 +81,11 @@ public class PasteEntity {
         this.ip = ip;
     }
 
-    public Blob getCode() {
-        return code;
+    public String getContent() {
+        return content;
     }
 
-    public void setCode(Blob code) {
-        this.code = code;
+    public void setContent(String content) {
+        this.content = content;
     }
 }
