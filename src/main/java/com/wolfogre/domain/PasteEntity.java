@@ -1,8 +1,10 @@
 package com.wolfogre.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import org.hibernate.annotations.Type;
+import org.hibernate.validator.constraints.Length;
+import org.springframework.data.jpa.repository.Query;
+
+import javax.persistence.*;
 import java.sql.Blob;
 import java.util.Date;
 
@@ -13,14 +15,19 @@ import java.util.Date;
 @Table(name = "paste")
 public class PasteEntity {
     @Id
+    @Column(name = "id")
     private Integer id;
 
+    @Column(name = "name", nullable = false, length = 30)
     private String name;
 
+    @Column(name = "time", nullable = false)
     private Date time;
 
+    @Column(name = "ip", nullable = false, length = 15)
     private String ip;
 
+    @Column(name = "code", nullable = false)
     private Blob code;
 
     public PasteEntity(){
