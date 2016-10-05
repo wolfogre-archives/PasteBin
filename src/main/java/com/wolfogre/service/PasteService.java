@@ -2,6 +2,7 @@ package com.wolfogre.service;
 
 import com.wolfogre.dao.PasteRepository;
 import com.wolfogre.domain.PasteEntity;
+import org.apache.commons.lang3.StringEscapeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
@@ -25,6 +26,7 @@ public class PasteService {
 
     public int savePaste(String name, Date time, String language, String ip, String content) {
         //TODO:应该检查输入参数，有误抛异常
+        content = StringEscapeUtils.escapeHtml4(content);
         synchronized(this) {
             int id = pasteRepository.getMaxId() + 1;
             // TODO:time参数待处理

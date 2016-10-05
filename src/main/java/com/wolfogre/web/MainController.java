@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.ServletRequest;
+import javax.servlet.http.HttpServletRequest;
 import java.sql.Date;
 import java.util.List;
 
@@ -30,8 +32,13 @@ public class MainController {
     LanguageService languageService;
 
     @RequestMapping("/")
-    public String index(Model model) {
+    public String index(Model model, HttpServletRequest servletRequest) {
+        String ip = servletRequest.getHeader("X-FORWARDED-FOR");
+        if (ip == null) {
+            ip = servletRequest.getRemoteAddr();
+        }
         model.addAttribute("languageList", languageService.getLanguageList());
+        model.addAttribute("ip", ip);
         return "index";
     }
 
