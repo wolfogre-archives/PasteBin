@@ -65,7 +65,7 @@ public class MainController {
         return "redirect:/" + id;
     }
 
-    @RequestMapping("/{id}")
+    @RequestMapping("/{id:\\d+}")
     public String submit(Model model, @PathVariable("id") int id) {
         model.addAttribute("name", id);
         return "content";
