@@ -2,6 +2,7 @@ package com.wolfogre.web;
 
 import com.wolfogre.dao.PasteRepository;
 import com.wolfogre.domain.PasteEntity;
+import com.wolfogre.service.LanguageService;
 import com.wolfogre.service.PasteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,9 +26,12 @@ public class MainController {
     @Autowired
     PasteService pasteService;
 
+    @Autowired
+    LanguageService languageService;
+
     @RequestMapping("/")
     public String index(Model model) {
-        model.addAttribute("name", pasteService.getMaxId());
+        model.addAttribute("languageList", languageService.getLanguageList());
         return "index";
     }
 
