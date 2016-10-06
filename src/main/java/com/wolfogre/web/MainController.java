@@ -45,13 +45,6 @@ public class MainController {
             ip = servletRequest.getRemoteAddr();
         }
         String location = "unknown";
-//        try {
-//            location = ipService.getIpLocation(ip);
-//        } catch (IOException | JSONException e) {
-//            location = "unknown";
-//        }
-        servletRequest.getSession().setAttribute("location", location);
-        servletRequest.getSession().setAttribute("ip", ip);
         model.addAttribute("languageList", languageService.getLanguageList());
         model.addAttribute("ip", ip);
         model.addAttribute("location", location);
@@ -60,7 +53,15 @@ public class MainController {
 
     @RequestMapping("/submit")
     public String submit(HttpServletRequest servletRequest, String name, String language, String content) {
-        int id = pasteService.savePaste(name, new Date(new java.util.Date().getTime()), language, content, servletRequest.getSession().getAttribute("ip").toString(), servletRequest.getSession().getAttribute("location").toString());
+        String ip = servletRequest.getHeader("X-FORWARDED-FOR");
+        // TODO: X-FORWARDED-FOR 可能拥有多个IP，因为可能有多层代理
+        // TODO: 如果服务器不存在 Nginx 代理，客户端可能伪装 X-FORWARDED-FOR，这时得不到真的IP
+        // TODO: 想采用控制IP的方式限制机器人行为这一点有点麻烦
+        if (ip == null) {
+            ip = servletRequest.getRemoteAddr();
+        }
+        String location = "unknown";
+        int id = pasteService.savePaste(name, new Date(new java.util.Date().getTime()), language, content, ip, location);
         return "redirect:/" + id;
     }
 
