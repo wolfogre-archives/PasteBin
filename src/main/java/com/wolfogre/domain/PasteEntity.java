@@ -1,6 +1,11 @@
 package com.wolfogre.domain;
 
+import org.hibernate.annotations.*;
+
 import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Index;
+import javax.persistence.Table;
 import java.sql.Blob;
 import java.util.Date;
 
@@ -8,7 +13,10 @@ import java.util.Date;
  * Created by wolfogre on 10/5/16.
  */
 @Entity
-@Table(name = "paste")
+@Table(name = "paste", indexes = {
+    @Index(columnList = "ip", name = "ip_index"),
+    @Index(columnList = "time", name = "time_index")
+})
 public class PasteEntity {
     @Id
     private Integer id;

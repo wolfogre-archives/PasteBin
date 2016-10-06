@@ -48,6 +48,7 @@ public class MainController {
         model.addAttribute("languageList", languageService.getLanguageList());
         model.addAttribute("ip", ip);
         model.addAttribute("location", location);
+        model.addAttribute("countInLastHour", pasteService.getCountInLastHour(ip));
         return "index";
     }
 

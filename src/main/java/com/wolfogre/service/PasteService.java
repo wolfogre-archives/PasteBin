@@ -2,15 +2,10 @@ package com.wolfogre.service;
 
 import com.wolfogre.dao.PasteRepository;
 import com.wolfogre.domain.PasteEntity;
-import org.apache.commons.lang3.StringEscapeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
 
-import java.lang.annotation.Annotation;
 import java.sql.Date;
-import java.util.List;
 
 /**
  * Created by wolfogre on 10/5/16.
@@ -23,6 +18,10 @@ public class PasteService {
     public int getMaxId() {
         Integer maxId = pasteRepository.getMaxId();
         return maxId == null ? 0 : maxId;
+    }
+
+    public int getCountInLastHour(String ip) {
+        return pasteRepository.getCountInTimePeriod(ip, new Date(new java.util.Date().getTime() - 60 * 60 * 1000), new Date(new java.util.Date().getTime()));
     }
 
     public int savePaste(String name, Date time, String language, String content, String ip, String location) {
