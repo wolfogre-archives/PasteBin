@@ -3,13 +3,31 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <title>Paste Bin</title>
+    <!-- TODO：仅用来测试确认效果满意后下载下来 -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.6.0/styles/dracula.min.css"/>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/highlight.min.js"></script>
+    <script src="//download.wolfogre.com/highlightjs-line-numbers.js"></script>
+    <style>
+        .hljs-line-numbers {
+            text-align: right;
+            border-right: 1px solid #ccc;
+            color: #999;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+    </style>
+    <script>hljs.initHighlightingOnLoad();hljs.initLineNumbersOnLoad();</script>
 </head>
 <body>
 <div>
     <div><span th:text="${pasteEntity.name}"></span></div>
     <div><span th:text="${pasteEntity.time}"></span></div>
     <div><span th:text="${pasteEntity.language}"></span></div>
-    <div><pre th:text="${content}"></pre></div>
+    <div><pre><code  th:class="${pasteEntity.language}" th:text="${content}"></code></pre></div>
     <div><span th:text="${pasteEntity.ip}"></span></div>
     <div><span th:text="${pasteEntity.location}"></span></div>
 
