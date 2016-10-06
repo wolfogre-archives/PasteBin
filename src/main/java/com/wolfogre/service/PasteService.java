@@ -27,7 +27,7 @@ public class PasteService {
 
     public int savePaste(String name, Date time, String language, String content, String ip, String location) {
         //TODO:应该检查输入参数，有误抛异常
-        content = StringEscapeUtils.escapeHtml4(content);
+        //content = StringEscapeUtils.escapeHtml4(content);
         synchronized(this) {
             int id = getMaxId() + 1;
             // TODO:time参数待处理
@@ -35,5 +35,9 @@ public class PasteService {
             pasteRepository.save(pasteEntity);
             return id;
         }
+    }
+
+    public PasteEntity getPaste(int id) {
+        return pasteRepository.getOne(id);
     }
 }

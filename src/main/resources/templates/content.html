@@ -6,7 +6,13 @@
 </head>
 <body>
 <div>
-    <span th:text="${id}"></span>
+    <div><span th:text="${pasteEntity.name}"></span></div>
+    <div><span th:text="${pasteEntity.time}"></span></div>
+    <div><span th:text="${pasteEntity.language}"></span></div>
+    <div><pre th:text="${content}"></pre></div>
+    <div><span th:text="${pasteEntity.ip}"></span></div>
+    <div><span th:text="${pasteEntity.location}"></span></div>
+
 </div>
 </body>
 </html>

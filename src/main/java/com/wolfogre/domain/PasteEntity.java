@@ -22,7 +22,7 @@ public class PasteEntity {
     @Column(nullable = false, length = 30)
     private String language;
 
-    @Column(nullable = false, columnDefinition="LONGBLOB")
+    @Column(nullable = false, columnDefinition="MEDIUMTEXT")
     private String content;
 
     @Column(nullable = false, length = 15)
