@@ -48,9 +48,9 @@ public class IpServiceTests {
     @Test
     public void testGetIpLocation() {
         try {
-            System.out.println(ipService.getIpLocation("223.5.5.5"));
-            System.out.println(ipService.getIpLocation("101.94.216.45"));
-            System.out.println(ipService.getIpLocation("127.0.0.1"));
+            System.out.println(ipService.getIpLocation("223.5.5.5", 1000));
+            System.out.println(ipService.getIpLocation("101.94.216.45", 1000));
+            System.out.println(ipService.getIpLocation("127.0.0.1", 1000));
         } catch (IOException e) {
             e.printStackTrace();
         } catch (JSONException e) {

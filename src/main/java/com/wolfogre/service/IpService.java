@@ -28,12 +28,13 @@ public class IpService {
         return input != null && patternIp.matcher(input).matches();
     }
 
-    // TODO:拖累性能太严重，考虑让前段做
-    public String getIpLocation(String input) throws IOException, JSONException {
+    public String getIpLocation(String input, int timeout) throws IOException, JSONException {
         if(!isIp(input))
             return "error";
         URL url = new URL("http://ip.taobao.com/service/getIpInfo.php?ip=" + input);
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+        connection.setConnectTimeout(timeout);
+        connection.setReadTimeout(timeout);
         connection.connect();
         Scanner scanner = new Scanner(connection.getInputStream());
         StringBuilder stringBuilder = new StringBuilder();
