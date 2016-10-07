@@ -16,7 +16,7 @@
         发布者<input type="text" name="name"/><br/>
         语言
         <select name="language">
-            <option th:each="it : ${languageList}" th:value="${it.getKey()}" th:text="${it.getValue()}"></option>
+            <option th:each="it : ${languageList}" th:value="${it.getValue()}" th:text="${it.getKey()}"></option>
         </select>
         <br/>
         代码<br/>

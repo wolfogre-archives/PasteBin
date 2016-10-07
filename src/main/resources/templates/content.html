@@ -5,7 +5,7 @@
     <title>Paste Bin</title>
     <!-- TODO：仅用来测试确认效果满意后下载下来 -->
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.6.0/styles/dracula.min.css"/>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/highlight.min.js"></script>
+    <script src="//download.wolfogre.com/highlight.pack.js"></script>
     <script src="//download.wolfogre.com/highlightjs-line-numbers.js"></script>
     <style>
         .hljs-line-numbers {
@@ -24,10 +24,11 @@
 </head>
 <body>
 <div>
+    <!-- TODO：可以考虑显示自动判定的语言 -->
     <div><span th:text="${pasteEntity.name}"></span></div>
     <div><span th:text="${pasteEntity.time}"></span></div>
     <div><span th:text="${pasteEntity.language}"></span></div>
-    <div><pre><code  th:class="${pasteEntity.language}" th:text="${content}"></code></pre></div>
+    <div><pre><code  th:class="${pasteEntity.language == 'auto' ? '' : (pasteEntity.language == 'plain' ? 'plain hljs' : pasteEntity.language)}" th:text="${content}"></code></pre></div>
     <div><span th:text="${pasteEntity.ip}"></span></div>
     <div><span th:text="${pasteEntity.location}"></span></div>
 
