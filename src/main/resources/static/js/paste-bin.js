@@ -3,6 +3,7 @@
  */
 $(document).ready(function(){
     $.get('location?ip=' + $("#ip").text(), function(data){
-        $('#location').text(data);
+        $('#location-to-show').text(data);
+        $('#location').val(data);
     });
 });
