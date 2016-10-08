@@ -31,7 +31,7 @@
     <div><pre><code  th:class="${pasteEntity.language == 'auto' ? '' : (pasteEntity.language == 'plain' ? 'plain hljs' : pasteEntity.language)}" th:text="${content}"></code></pre></div>
     <div><span th:text="${pasteEntity.ip}"></span></div>
     <div><span th:text="${pasteEntity.location}"></span></div>
-
+    <div><img th:src="${'/qr.png?content=' + url}"/></div>
 </div>
 </body>
 </html>

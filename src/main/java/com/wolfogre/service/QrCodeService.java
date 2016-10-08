@@ -19,12 +19,13 @@ import java.util.Hashtable;
  */
 @Service
 public class QrCodeService {
-    public boolean getQrCode(String content, OutputStream outputStream) {
+    public boolean getQrCode(String content, int size, OutputStream outputStream) {
         Hashtable<EncodeHintType, String> hints = new Hashtable<>();
         hints.put(EncodeHintType.CHARACTER_SET, "UTF8");
+        hints.put(EncodeHintType.MARGIN, "1");
         BitMatrix matrix;
         try {
-            matrix = new MultiFormatWriter().encode(content, BarcodeFormat.QR_CODE, 300, 300, hints);
+            matrix = new MultiFormatWriter().encode(content, BarcodeFormat.QR_CODE, size, size, hints);
             MatrixToImageWriter.writeToStream(matrix, "png", outputStream);
         } catch (IOException e) {
             return false;

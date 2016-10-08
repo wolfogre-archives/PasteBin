@@ -25,7 +25,7 @@ public class QrCodeServiceTests {
     public void testGetQrCode() {
         try {
             FileOutputStream fileOutputStream = new FileOutputStream("target/testout.png");
-            qrCodeService.getQrCode("http://blog.wolfogre.com/音乐", fileOutputStream);
+            qrCodeService.getQrCode("http://blog.wolfogre.com/音乐", 300, fileOutputStream);
             fileOutputStream.close();
         } catch (java.io.IOException e) {
             e.printStackTrace();

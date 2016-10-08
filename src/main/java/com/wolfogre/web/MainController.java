@@ -66,13 +66,15 @@ public class MainController {
     }
 
     @RequestMapping("/{id:\\d+}")
-    public String submit(Model model, @PathVariable("id") int id) {
+    public String submit(Model model, HttpServletRequest servletRequest, @PathVariable("id") int id) {
         PasteEntity pasteEntity = pasteService.getPaste(id);
         if(pasteEntity == null)
             return "error";
         model.addAttribute("pasteEntity", pasteEntity);
         String content = pasteEntity.getContent();
         model.addAttribute("content", pasteEntity.getContent());
+        // TODO:这里没考虑https
+        model.addAttribute("url", "http://" + servletRequest.getHeader("Host") + "/" + id);
         return "content";
     }
 }
