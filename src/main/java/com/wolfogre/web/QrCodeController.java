@@ -2,15 +2,14 @@ package com.wolfogre.web;
 
 import com.wolfogre.service.QrCodeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletResponse;
-import java.io.ByteArrayOutputStream;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
 
 /**
  * Created by wolfogre on 10/9/16.
@@ -23,10 +22,10 @@ public class QrCodeController {
     private byte[] errorImage;
 
     public QrCodeController() throws IOException {
-        // TODO：Big Bug! 部署时文件路径一定有问题
-        FileInputStream fileInputStream = new FileInputStream("src/main/resources/static/img/qr-error.png");
+        InputStream fileInputStream = new ClassPathResource("static/img/qr-error.png").getInputStream();
         errorImage = new byte[fileInputStream.available()];
         fileInputStream.read(errorImage);
+        fileInputStream.close();
     }
 
     // TODO:参考http://www.baeldung.com/spring-mvc-image-media-data，但是好像不是很优雅

@@ -58,7 +58,7 @@ public class LanguageService {
         languageList.add(new AbstractMap.SimpleEntry<>("Diff", "diff"));
         languageList.add(new AbstractMap.SimpleEntry<>("Django", "django"));
         languageList.add(new AbstractMap.SimpleEntry<>("Dockerfile", "dockerfile"));
-        languageList.add(new AbstractMap.SimpleEntry<>("dsconfig", "dsconfig"));
+        languageList.add(new AbstractMap.SimpleEntry<>("Dsconfig", "dsconfig"));
         languageList.add(new AbstractMap.SimpleEntry<>("DTS (Device Tree)", "dts"));
         languageList.add(new AbstractMap.SimpleEntry<>("Dust", "dust"));
         languageList.add(new AbstractMap.SimpleEntry<>("EBNF", "ebnf"));

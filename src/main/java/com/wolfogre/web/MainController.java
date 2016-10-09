@@ -71,10 +71,8 @@ public class MainController {
         if(pasteEntity == null)
             return "error";
         model.addAttribute("pasteEntity", pasteEntity);
-        String content = pasteEntity.getContent();
         model.addAttribute("content", pasteEntity.getContent());
-        // TODO:这里没考虑https
-        model.addAttribute("url", "http://" + servletRequest.getHeader("Host") + "/" + id);
+        model.addAttribute("url", servletRequest.getRequestURL().toString());
         return "content";
     }
 }
