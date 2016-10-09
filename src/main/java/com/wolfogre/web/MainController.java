@@ -37,10 +37,8 @@ public class MainController {
 
     @RequestMapping("/")
     public String index(Model model, HttpServletRequest servletRequest) {
-        String ip = servletRequest.getHeader("X-FORWARDED-FOR");
-        // TODO: X-FORWARDED-FOR 可能拥有多个IP，因为可能有多层代理
-        // TODO: 如果服务器不存在 Nginx 代理，客户端可能伪装 X-FORWARDED-FOR，这时得不到真的IP
-        // TODO: 想采用控制IP的方式限制机器人行为这一点有点麻烦
+        String ip = ipService.getIpFromForwardedFor(servletRequest.getHeader("X-FORWARDED-FOR"));
+
         if (ip == null) {
             ip = servletRequest.getRemoteAddr();
         }
@@ -54,15 +52,12 @@ public class MainController {
 
     @RequestMapping("/submit")
     public String submit(HttpServletRequest servletRequest, String location, String name, String language, String content) {
-        String ip = servletRequest.getHeader("X-FORWARDED-FOR");
-        // TODO: X-FORWARDED-FOR 可能拥有多个IP，因为可能有多层代理
-        // TODO: 如果服务器不存在 Nginx 代理，客户端可能伪装 X-FORWARDED-FOR，这时得不到真的IP
-        // TODO: 想采用控制IP的方式限制机器人行为这一点有点麻烦
+        String ip = ipService.getIpFromForwardedFor(servletRequest.getHeader("X-FORWARDED-FOR"));
         if (ip == null) {
             ip = servletRequest.getRemoteAddr();
         }
         int id = pasteService.savePaste(name, new Date(new java.util.Date().getTime()), language, content, ip, location);
-        return "redirect:/" + id;
+        return "redirect: /" + id;
     }
 
     @RequestMapping("/{id:\\d+}")
