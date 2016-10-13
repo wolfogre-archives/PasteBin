@@ -57,7 +57,7 @@ public class MainController {
             ip = servletRequest.getRemoteAddr();
         }
         int id = pasteService.savePaste(name, new Date(new java.util.Date().getTime()), language, content, ip, location);
-        return "redirect: /" + id;
+        return "redirect:/" + id;
     }
 
     @RequestMapping("/{id:\\d+}")

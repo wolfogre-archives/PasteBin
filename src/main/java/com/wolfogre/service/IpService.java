@@ -65,6 +65,8 @@ public class IpService {
     }
 
     public String getIpFromForwardedFor(String input) {
+        if(input == null)
+            return null;
         // TODO: X-FORWARDED-FOR 可能拥有多个IP，因为可能有多层代理
         // TODO: 如果服务器不存在 Nginx 代理，客户端可能伪装 X-FORWARDED-FOR，这时得不到真的IP
         if(!input.contains(","))
