@@ -65,6 +65,7 @@ public class IpService {
     }
 
     public String getIpFromForwardedFor(String input) {
+        input = input.replace(" ", "");
         if(input == null)
             return null;
         // TODO: X-FORWARDED-FOR 可能拥有多个IP，因为可能有多层代理
