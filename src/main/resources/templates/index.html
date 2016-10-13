@@ -1,32 +1,62 @@
 <!DOCTYPE html>
-<html lang="zh_CN" xmlns:th="http://www.thymeleaf.ogg">
+<html lang="zh-cn"
+      xmlns:th="http://www.thymeleaf.ogg">
+
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <title>Paste Bin</title>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content="Source code generated using layoutit.com"/>
+    <meta name="author" content="LayoutIt!"/>
+    <title>狼煞粘贴板</title>
+
     <!-- TODO：之后要下载下来 -->
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
     <script src="//code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script th:src="@{js/paste-bin.js}"></script>
 </head>
-<body>
-<div>
-    <form action="submit" method="post" class="form-horizontal">
-        你的IP：<span id="ip" th:text="${ip}"></span><br/>
-        你的位置：<span id="location-to-show">定位中...</span><br/>
-        最近一小时提交：<span th:text="${countInLastHour}"></span>次<br/>
 
-        <input id="location" type="hidden" name="location" value="未知"/>
-        发布者<input type="text" name="name" class="form-control"/><br/>
-        语言
-        <select name="language" class="form-control">
-            <option th:each="it : ${languageList}" th:value="${it.getValue()}" th:text="${it.getKey()}"></option>
-        </select>
-        <br/>
-        代码<br/>
-        <textarea name="content" class="form-control" rows="30"></textarea>
-        <input type="submit" value="粘贴！" class="btn btn-default"/>
-    </form>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-1">
+                </div>
+                <div class="col-md-10">
+                    <div th:replace="shared/header :: header"></div>
+                    <form role="form" action="submit" method="post" >
+                        <div class="form-group">
+                            <textarea name="content" class="form-control" rows="20"></textarea>
+                        </div>
+                        <p>您的IP：<strong><span id="ip" th:text="${ip}"></span></strong>，位于：<strong><span id="location-to-show">定位中...</span></strong>，最近一小时您提交了<strong><span th:text="${countInLastHour}"></span></strong>次</p>
+                        <div class="form-inline text-right">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">您的署名</label>
+                                <input type="text" name="name" class="form-control" id="exampleInputEmail1" />
+                            </div>
+                            <div class="form-group">
+
+                                <label>
+                                    编程语言
+                                </label>
+                                <select name="language" class="form-control">
+                                    <option th:each="it : ${languageList}" th:value="${it.getValue()}" th:text="${it.getKey()}"></option>
+                                </select>
+                            </div>
+                            <input id="location" type="hidden" name="location" value="未知"/>
+                            &nbsp;&nbsp;&nbsp;
+                            <button type="submit" class="btn btn-success btn-lg">粘贴！</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-md-1">
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+<div th:replace="shared/footer :: footer"></div>
 </body>
 </html>
