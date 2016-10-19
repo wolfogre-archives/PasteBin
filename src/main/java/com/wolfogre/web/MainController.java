@@ -56,6 +56,8 @@ public class MainController {
         if (ip == null) {
             ip = servletRequest.getRemoteAddr();
         }
+        if(pasteService.getCountInLastHour(ip) > 60)
+            return "redirect:/error";
         int id = pasteService.savePaste(name, new Date(new java.util.Date().getTime()), language, content, ip, location);
         return "redirect:/" + id;
     }
