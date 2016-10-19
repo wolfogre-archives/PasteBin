@@ -6,8 +6,8 @@
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <meta name="description" content="Source code generated using layoutit.com"/>
-    <meta name="author" content="LayoutIt!"/>
+    <meta name="description" content="在线粘贴板"/>
+    <meta name="author" content="wolfogre"/>
     <title>狼煞粘贴板</title>
 
     <!-- TODO：之后要下载下来 -->
@@ -55,7 +55,7 @@
                         在<strong><span th:text="${pasteEntity.location + '[' + pasteEntity.ip + ']'}"></span></strong>
                         粘贴，
                         所选语言为<strong><span th:text="${pasteEntity.language}"></span></strong>
-                        <button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#qrModal">
+                        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#qrModal">
                             <span class="glyphicon glyphicon-qrcode" aria-hidden="true"></span>
                         </button>
                     </div>
@@ -81,7 +81,7 @@
                 <div class="text-center"><img th:src="${'/qr.png?content=' + url}"/></div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->

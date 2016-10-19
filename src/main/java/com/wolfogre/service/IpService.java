@@ -1,14 +1,11 @@
 package com.wolfogre.service;
 
-import jdk.nashorn.api.scripting.JSObject;
-import org.apache.commons.lang3.StringEscapeUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Scanner;
 import java.util.regex.Matcher;

@@ -1,12 +1,6 @@
 package com.wolfogre.domain;
 
-import org.hibernate.annotations.*;
-
 import javax.persistence.*;
-import javax.persistence.Entity;
-import javax.persistence.Index;
-import javax.persistence.Table;
-import java.sql.Blob;
 import java.util.Date;
 
 /**

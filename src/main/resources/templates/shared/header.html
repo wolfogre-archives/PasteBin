@@ -2,20 +2,20 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <nav class="navbar navbar-default" role="navigation" th:fragment="header">
     <div class="navbar-header">
-        <a class="navbar-brand" href="#"><strong>在线粘贴板</strong></a>
+        <a class="navbar-brand" href="/"><strong>在线粘贴板</strong></a>
     </div>
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
             <li>
-                <a href="#">关于</a>
+                <a href="http://blog.wolfogre.com/2016/10/19/641.html">关于</a>
             </li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
             <li>
-                <form class="navbar-form navbar-left" role="search">
+                <form class="navbar-form navbar-left" role="search" action="/">
                     <div class="form-group">
-                        <input type="number" class="form-control" placeholder="请输入代码ID"/>
+                        <input required="required" type="number" class="form-control" name="id" placeholder="请输入代码ID"/>
                     </div>
                     <button type="submit" class="btn btn-default">
                         立即查看
