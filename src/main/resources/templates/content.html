@@ -1,12 +1,24 @@
 <!DOCTYPE html>
-<html lang="zh_CN" xmlns:th="http://www.thymeleaf.ogg">
+<html lang="zh-cn"
+      xmlns:th="http://www.thymeleaf.ogg">
+
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <title>Paste Bin</title>
-    <!-- TODO：仅用来测试确认效果满意后下载下来 -->
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content="Source code generated using layoutit.com"/>
+    <meta name="author" content="LayoutIt!"/>
+    <title>狼煞粘贴板</title>
+
+    <!-- TODO：之后要下载下来 -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
+    <script src="//code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.6.0/styles/dracula.min.css"/>
     <script src="//download.wolfogre.com/highlight.pack.js"></script>
     <script src="//download.wolfogre.com/highlightjs-line-numbers.js"></script>
+
     <style>
         .hljs-line-numbers {
             text-align: right;
@@ -19,19 +31,60 @@
             -ms-user-select: none;
             user-select: none;
         }
+        .hljs {
+            white-space:pre;
+        }
     </style>
     <script>hljs.initHighlightingOnLoad();hljs.initLineNumbersOnLoad();</script>
+
 </head>
+
 <body>
-<div>
-    <!-- TODO：可以考虑显示自动判定的语言 -->
-    <div><span th:text="${pasteEntity.name}"></span></div>
-    <div><span th:text="${pasteEntity.time}"></span></div>
-    <div><span th:text="${pasteEntity.language}"></span></div>
-    <div><pre><code  th:class="${pasteEntity.language == 'auto' ? '' : (pasteEntity.language == 'plain' ? 'plain hljs' : pasteEntity.language)}" th:text="${content}"></code></pre></div>
-    <div><span th:text="${pasteEntity.ip}"></span></div>
-    <div><span th:text="${pasteEntity.location}"></span></div>
-    <div><img th:src="${'/qr.png?content=' + url}"/></div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-1">
+                </div>
+                <div class="col-md-10">
+                    <div th:replace="shared/header :: header"></div>
+                    <div>
+                        编号<strong><span th:text="${id}"></span></strong>，
+                        由<strong><span th:text="${pasteEntity.name}"></span></strong>
+                        于<strong><span th:text="${pasteEntity.time}"></span></strong>
+                        在<strong><span th:text="${pasteEntity.location + '[' + pasteEntity.ip + ']'}"></span></strong>
+                        粘贴，
+                        所选语言为<strong><span th:text="${pasteEntity.language}"></span></strong>
+                        <button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#qrModal">
+                            <span class="glyphicon glyphicon-qrcode" aria-hidden="true"></span>
+                        </button>
+                    </div>
+                    <div><pre><code th:class="${pasteEntity.language == 'auto' ? '' : (pasteEntity.language == 'plain' ? 'plain hljs' : pasteEntity.language)}" th:text="${content}"></code></pre></div>
+                </div>
+                <div class="col-md-1">
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+<div th:replace="shared/footer :: footer"></div>
 </body>
+
+<div class="modal fade" tabindex="-1" role="dialog" id="qrModal">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">扫一扫</h4>
+            </div>
+            <div class="modal-body">
+                <div class="text-center"><img th:src="${'/qr.png?content=' + url}"/></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
 </html>

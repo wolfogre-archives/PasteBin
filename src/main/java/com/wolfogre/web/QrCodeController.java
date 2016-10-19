@@ -35,7 +35,7 @@ public class QrCodeController {
         if(content == null || content.isEmpty())
             return errorImage;
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        if(qrCodeService.getQrCode(content, 300, byteArrayOutputStream)) {
+        if(qrCodeService.getQrCode(content, 250, byteArrayOutputStream)) {
             return byteArrayOutputStream.toByteArray();
         }
         return errorImage;

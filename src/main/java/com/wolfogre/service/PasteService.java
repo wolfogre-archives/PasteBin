@@ -26,6 +26,8 @@ public class PasteService {
 
     public int savePaste(String name, Date time, String language, String content, String ip, String location) {
         //TODO:应该检查输入参数，有误抛异常
+        if(name == null || name.isEmpty())
+            name = "匿名者";
         //content = StringEscapeUtils.escapeHtml4(content);
         synchronized(this) {
             int id = getMaxId() + 1;

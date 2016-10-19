@@ -67,6 +67,7 @@ public class MainController {
         PasteEntity pasteEntity = pasteService.getPaste(id);
         if(pasteEntity == null)
             return "error";
+        model.addAttribute("id", id);
         model.addAttribute("pasteEntity", pasteEntity);
         model.addAttribute("content", pasteEntity.getContent());
         model.addAttribute("url", servletRequest.getRequestURL().toString());
