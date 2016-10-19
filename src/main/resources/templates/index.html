@@ -28,7 +28,7 @@
                     <div th:replace="shared/header :: header"></div>
                     <form role="form" action="submit" method="post" >
                         <div class="form-group">
-                            <textarea name="content" class="form-control" rows="20"></textarea>
+                            <textarea name="content" class="form-control" rows="20" placeholder="在这里粘贴你的代码..."></textarea>
                         </div>
                         <p>您的IP：<strong><span id="ip" th:text="${ip}"></span></strong>，位于：<strong><span id="location-to-show">定位中...</span></strong>，最近一小时您提交了<strong><span th:text="${countInLastHour}"></span></strong>次</p>
                         <div class="form-inline text-right">
